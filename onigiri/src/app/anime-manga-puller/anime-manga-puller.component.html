@@ -1,0 +1,8 @@
+<h1>Anime and Manga</h1>
+<div class="mediaList">
+    <div class="media" *ngFor="let e of medias">
+        <img src={{e.coverImage.extraLarge}} />
+        <p>{{e.title.romaji}}</p>
+    </div>
+</div>
+

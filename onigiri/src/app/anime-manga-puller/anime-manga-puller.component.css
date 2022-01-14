@@ -1,0 +1,19 @@
+.mediaList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.media {
+    display: flex;
+    flex: 0 0 33.33%;
+    flex-direction: column;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.media img {
+    height: 100%;
+    width: auto;
+}
