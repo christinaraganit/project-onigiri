@@ -17,12 +17,14 @@
           fill-rule="nonzero"
         />
       </svg>
-      <span>Onigiri</span>
+      <h2 class="mat-title">Onigiri</h2>
     </div>
 
     <div class="buttons">
       <button mat-stroked-button color="primary">Log in</button>
-      <button mat-raised-button color="primary">Sign up</button>
+      <button routerLink="/dashboard" mat-raised-button color="primary">
+        Sign up
+      </button>
     </div>
   </mat-toolbar>
 
@@ -105,10 +107,117 @@
   </div>
 
   <footer>
-    <mat-toolbar>
+    <mat-toolbar color="primary">
       <span>Created for nwHacks by Eric Dam and Christina Raganit.</span>
     </mat-toolbar>
   </footer>
+
+  //dashboard starts here
+  <mat-toolbar class="navigation" color="primary">
+    <div class="logotype">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        aria-hidden="true"
+        role="img"
+        width="1em"
+        height="1em"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10zm-5-3.755V13a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5.245a8 8 0 1 0-10 0z"
+          fill="currentColor"
+          fill-rule="nonzero"
+        />
+      </svg>
+      <h2 class="mat-title">Onigiri</h2>
+    </div>
+
+    <div class="profile-information">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Profile button with a menu"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>library_books</mat-icon>
+          <span>Manage your lists</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>favorite</mat-icon>
+          <span>View your favourites</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>explore</mat-icon>
+          <span>Explore new manga and anime</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>View profile</span>
+        </button>
+      </mat-menu>
+
+      <div class="name-information">
+        <p class="mat-body-1">Your name</p>
+        <p class="mat-caption">Your username</p>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <div class="dashboard-main">
+    <div class="sidenav">
+      <button class="current" mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Dashboard</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>library_books</mat-icon>
+        <span>Lists</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>favorite</mat-icon>
+        <span>Favourites</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>explore</mat-icon>
+        <span>Recommendations</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Profile</span>
+      </button>
+    </div>
+
+    <div class="social-feed">
+      <h2 class="mat-title">Welcome to your dashboard.</h2>
+      <mat-card>
+        <mat-card-header>
+          <div class="card-avatar" mat-card-avatar></div>
+          <mat-card-title>Your name</mat-card-title>
+          <mat-card-subtitle>your username</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <b>Your name</b> started watching
+            <b>Toilet-bound Hanako-kun, Volume 1.</b>
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="your-activity"></div>
+  </div>
 </body>
 
 <script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script>
