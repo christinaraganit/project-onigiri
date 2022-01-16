@@ -1,0 +1,114 @@
+<body>
+  <mat-toolbar class="navigation">
+    <div class="logotype">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        aria-hidden="true"
+        role="img"
+        width="1em"
+        height="1em"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10zm-5-3.755V13a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5.245a8 8 0 1 0-10 0z"
+          fill="currentColor"
+          fill-rule="nonzero"
+        />
+      </svg>
+      <h2 class="mat-title">Onigiri</h2>
+    </div>
+
+    <div class="buttons">
+      <button mat-stroked-button color="primary">Log in</button>
+      <button routerLink="/dashboard" mat-raised-button color="primary">
+        Sign up
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="main">
+    <div class="main-div">
+      <h3 class="mat-display-2">
+        Track your anime and manga favourites with Onigiri.
+      </h3>
+      <button mat-raised-button color="primary">Create an account</button>
+    </div>
+  </div>
+
+  <div class="features">
+    <h4 class="mat-display-1">Features</h4>
+    <div class="features-div">
+      <mat-card class="individual-feature-div">
+        <mat-card-title>Feature 1</mat-card-title>
+        <mat-card-subtitle
+          >Organize your anime watching and manga reading
+          history.</mat-card-subtitle
+        >
+      </mat-card>
+
+      <mat-card class="individual-feature-div">
+        <mat-card-title>Feature 2</mat-card-title>
+        <mat-card-subtitle
+          >Get recommendations based on your favourites.</mat-card-subtitle
+        >
+      </mat-card>
+
+      <mat-card class="individual-feature-div">
+        <mat-card-title>Feature 3</mat-card-title>
+        <mat-card-subtitle
+          >Learn what your friends are watching and reading.</mat-card-subtitle
+        >
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="developers">
+    <h4 class="mat-display-1">Meet the developers</h4>
+    <div class="developers-div">
+      <mat-card class="individual-developer-div">
+        <mat-card-title>Eric Dam</mat-card-title>
+        <mat-card-subtitle>Backend developer</mat-card-subtitle>
+        <mat-card-content
+          >Graduate from Computer Systems Technology at British Columbia
+          Institute of Technology. Likes strawberry milk and
+          stargazing.</mat-card-content
+        >
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>GITHUB</button>
+          <button mat-button>LINKEDIN</button>
+          <button mat-button>EMAIL</button>
+          <button mat-button>WEBSITE</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card class="individual-developer-div">
+        <mat-card-title>Christina Raganit</mat-card-title>
+        <mat-card-subtitle>Frontend developer</mat-card-subtitle>
+        <mat-card-content
+          >Graduate from Computer Systems Technology at British Columbia
+          Institute of Technology. Second-year Interactive Arts and Technology
+          student at Simon Fraser University. Likes rice.</mat-card-content
+        >
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>GITHUB</button>
+          <button mat-button>LINKEDIN</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="action">
+      <h4 class="mat-display-1">Sign up for Onigiri today.</h4>
+      <button mat-raised-button color="primary">Create an account</button>
+    </div>
+  </div>
+
+  <footer>
+    <mat-toolbar color="primary">
+      <span>Created for nwHacks by Eric Dam and Christina Raganit.</span>
+    </mat-toolbar>
+  </footer>
+</body>

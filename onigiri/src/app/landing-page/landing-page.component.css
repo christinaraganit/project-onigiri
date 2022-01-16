@@ -1,0 +1,64 @@
+:root {
+  --color-primary: #3f51b5;
+  --color-accent: #ff4081;
+  --color-warn: #f44336;
+  --color-warm: #f5f5f5;
+  --color-primary-40: #3f51b540;
+  --color-accent: #ff408140;
+  --color-warn: #f4433640;
+}
+
+.logotype {
+  display: flex;
+  align-items: center;
+}
+
+.logotype svg {
+  margin-right: 4px;
+}
+
+.buttons {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.main {
+  margin: 80px;
+}
+
+.features,
+.developers {
+  margin: 80px;
+  text-align: center;
+}
+
+.features-div,
+.developers-div {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 40px;
+}
+
+.individual-feature-div {
+  width: calc(100% / 3);
+}
+
+.individual-developer-div {
+  width: calc(100% / 2);
+}
+
+.main-div {
+  width: 50%;
+}
+
+.mat-display-2,
+.mat-display-1 {
+  margin-bottom: 20px;
+}
+
+.action {
+  margin: 80px;
+}
