@@ -9,12 +9,16 @@ import { MaterialModule } from './material/material.module';
 
 import { LandingPageComponent  } from './landing-page/landing-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +27,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MaterialModule,
     RouterModule.forRoot(
       [{path: 'dashboard', component: DashboardComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'signup', component: SignupComponent},
       {path: '', component: LandingPageComponent},]
     )
   ],
