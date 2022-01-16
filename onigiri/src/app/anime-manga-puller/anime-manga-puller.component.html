@@ -1,8 +1,14 @@
 <h1>Anime and Manga</h1>
+<div class="filter">
+    <input type="text" placeholder="Search">
+</div>
 <div class="mediaList">
     <div class="media" *ngFor="let e of medias">
         <img src={{e.coverImage.extraLarge}} />
-        <p>{{e.title.romaji}}</p>
+        <p *ngIf ="e.title.english != null else romaji">{{e.title.english}}</p>
+        <ng-template #romaji>
+            <p>{{e.title.romaji}}</p>
+        </ng-template>
     </div>
 </div>
 

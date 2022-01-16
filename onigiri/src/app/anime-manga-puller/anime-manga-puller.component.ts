@@ -8,6 +8,7 @@ export class ImageSize {
 }
 export class Title {
   constructor (
+    public english: string,
     public romaji: string
   ) {}
 }
@@ -32,7 +33,7 @@ export class AnimeMangaPullerComponent implements OnInit {
   li:any;
   medias: Media[] = [];
   all_list_query = `
-  query All{
+  query {
     Page {
       pageInfo {
         total
@@ -44,6 +45,7 @@ export class AnimeMangaPullerComponent implements OnInit {
       media {
         id
         title {
+          english
           romaji
         }
         coverImage {
@@ -63,8 +65,6 @@ export class AnimeMangaPullerComponent implements OnInit {
     .subscribe(data=> {
       this.li = data;
       this.medias = this.li.data.Page.media;
-      console.log(this.medias);
-      console.log(this.medias[0]);
     });
   }
 

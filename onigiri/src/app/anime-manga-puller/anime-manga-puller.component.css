@@ -2,18 +2,27 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 5%;
+    padding: 5%;
+    margin: 0 5%;
 }
 
 .media {
     display: flex;
-    flex: 0 0 33.33%;
     flex-direction: column;
-    min-width: 0;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    flex: 1 1 15%;
 }
 
 .media img {
-    height: 100%;
-    width: auto;
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 5px;
 }
+
+.filter {
+    display: flex;
+    flex-direction: row;
+} 
