@@ -25,6 +25,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { connectFirestoreEmulator, enableIndexedDbPersistence } from 'firebase/firestore';
+import { LoginFormComponent } from './login/login-form/login-form.component';
 const firebaseConfig = {
   apiKey: "AIzaSyAVOTwYBF7ajPXkYxlUI5E9TC0fau981Hc",
   authDomain: "onigiri-app.firebaseapp.com",
@@ -42,6 +43,7 @@ const firebaseConfig = {
     DashboardComponent,
     LandingPageComponent,
     LoginComponent,
+    LoginFormComponent,
     SignupComponent,
   ],
   imports: [
