@@ -1,0 +1,35 @@
+html,
+body,
+.login-container {
+  height: 100%;
+}
+
+.login-container {
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card {
+  padding: 20px;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-caption {
+  margin: 10px;
+  text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
