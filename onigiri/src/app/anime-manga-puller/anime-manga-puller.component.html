@@ -1,6 +1,6 @@
 <h1>Anime and Manga</h1>
 <div class="filter">
-    <input type="text" placeholder="Search">
+    <input type="text" placeholder="Search" [(ngModel)]="search" (ngModelChange)="onSearchChange()">
 </div>
 <div class="mediaList">
     <div class="media" *ngFor="let e of medias">
