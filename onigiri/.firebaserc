@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "onigiri-app": {
+      "hosting": {
+        "onigiri": [
+          "onigiri-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "onigiri-app"
+  }
+}
