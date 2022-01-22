@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MaterialModule } from '../../material/material.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +16,10 @@ export class LoginFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -34,5 +38,9 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     this.formData.emit(this.form.value);
+  }
+
+  createAccount() {
+    this.router.navigate(['/signup']);
   }
 }

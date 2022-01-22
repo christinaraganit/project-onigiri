@@ -8,11 +8,14 @@
 }
 
 .media {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    flex: 1 1 15%;
+    text-align: center;
+    flex: 0 1 15%;
+    margin-bottom: 5%;
 }
 
 .media img {

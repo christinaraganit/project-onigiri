@@ -1,15 +1,10 @@
+import { LoginData } from './../shared/services/login-data';
+import { SignupFormComponent } from './signup-form/signup-form.component';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AuthService } from '../authentication.service';
+import { Router } from '@angular/router';
+import { FirestoreService } from '../firestore.service';
 
-interface Anime {
-  value: string;
-  viewValue: string;
-}
-
-interface Manga {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-signup',
@@ -18,33 +13,37 @@ interface Manga {
 })
 
 export class SignupComponent implements OnInit {
-  animes: Anime[] = [
-    {value: 'attack-on-titan-0', viewValue: 'Attack on Titan'},
-    {value: 'jujutsu-kaisen-1', viewValue: 'Jujutsu Kaisen'},
-    {value: 'demon-slayer-2', viewValue: 'Demon Slayer'},
-  ];
 
-  mangas: Manga[] = [
-    {value: 'dragon-ball-0', viewValue: 'Dragon Ball'},
-    {value: 'inuyasha-1', viewValue: 'Inuyasha'},
-    {value: 'naruto-2', viewValue: 'Naruto'},
-  ];
-
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private firestoreService: FirestoreService
+  ) { }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required],
-    })
+
+  }
+
+  SignUp(loginData: any) {
+    console.log("register function called");
+    loginData.first
+    this.authService
+      .register(loginData)
+      .then((userCredential) => {
+        const email = userCredential.user.email;
+        if (email) {
+          this.firestoreService.addUser(
+            userCredential.user.uid,
+            email,
+            loginData.firstName,
+            loginData.lastName,
+            loginData.anime,
+            loginData.manga
+          ).then(() => {
+          });
+          this.router.navigate(['/dashboard'])
+        }
+      })
+      .catch((e) => console.log(e.message));
   }
 }

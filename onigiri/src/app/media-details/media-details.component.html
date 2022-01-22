@@ -1,0 +1,13 @@
+<div>
+    <div style="background-image: url({{bannerImage}});" class="banner"></div>
+    <div class="main-details">
+        <div class="add-to-list">
+            <img src={{coverImage}} class="cover" />
+            <button (click)="addToList()">Add to List</button>
+        </div>
+        <div class="media-text">
+            <p>{{title}}</p>
+            <p [innerHTML]="description"></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FirestoreService } from '../firestore.service';
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
+})
+export class UserListComponent implements OnInit {
+
+  user_medias: any = [];
+
+  constructor(
+    private http: HttpClient,
+    private auth: Auth,
+    private fr: FirestoreService
+  ) { }
+
+  ngOnInit(): void {
+    if (this.auth.currentUser) {
+      this.getList(this.auth.currentUser.uid);
+    }
+  }
+
+  async getList(userId: string) {
+    const media_ids = await this.fr.getUserList(userId);
+    const ids = media_ids.map(data => {
+      return data.mediaId;
+    })
+    var list_query = `
+    query {
+      Page {
+        pageInfo {
+          total
+          currentPage
+          lastPage
+          hasNextPage
+          perPage
+        }
+        media (id_in: [${ids}]){
+          id
+          title {
+            english
+            romaji
+          }
+          coverImage {
+            large
+          }
+        }
+      }
+    }`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', Accept: 'application/json' });
+    this.http.post<any>('https://graphql.anilist.co/', JSON.stringify({ query: list_query }), { headers })
+      .subscribe(data => {
+        this.user_medias = data.data.Page.media;
+        this.merge(this.user_medias, media_ids);
+        this.user_medias.sort((a,b) => {
+          return a.date_added - b.date_added;
+        })
+        console.log(this.user_medias);
+      });
+  }
+
+  merge(array1, array2) {
+    let findMedia = id => array2.find(element => element.mediaId === id);
+    array1.forEach(element => {
+      let media = findMedia(`${element.id}`);
+      let { date_added } = media;
+      Object.assign(element, {date_added});
+    });
+  }
+}

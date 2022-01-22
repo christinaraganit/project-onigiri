@@ -7,7 +7,30 @@ import { LoginData } from './shared/services/login-data';
 })
 
 export class AuthService {
-  constructor(private auth: Auth) {}
+
+  userData: any;
+  
+  constructor(private auth: Auth) {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user') || '{}');
+      } else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user') || 'null');
+      }
+    })
+  }
+
+  getUser() {
+    return this.auth.currentUser;
+  }
+
+  loggedIn() {
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    return (user !== null) ? true : false;
+  }
 
   login({ email, password }: any) {
     return signInWithEmailAndPassword(this.auth, email, password);
@@ -23,6 +46,7 @@ export class AuthService {
 
   logout() {
     console.log("Log out button clicked");
+    localStorage.removeItem('user');
     return signOut(this.auth);
   }
 }
