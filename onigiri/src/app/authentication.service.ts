@@ -45,7 +45,6 @@ export class AuthService {
   }
 
   logout() {
-    console.log("Log out button clicked");
     localStorage.removeItem('user');
     return signOut(this.auth);
   }

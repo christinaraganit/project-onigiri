@@ -14,24 +14,34 @@ export class DashboardComponent implements OnInit {
   email: string;
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router,
     private fireService: FirestoreService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const curr_user = this.authService.getUser();
     if (curr_user) {
-      this.setUserInfo(curr_user.uid);
+      await this.setUserInfo(curr_user.uid);
     }
+    this.userName = JSON.parse(localStorage.getItem('name') || 'null');
+    this.email = JSON.parse(localStorage.getItem('email') || 'null');
   }
 
   async setUserInfo(userId: string) {
-    const current = await this.fireService.getUser(userId);
-    const data = current.data();
-    if (data) {
-      this.email = data['email'];
-      this.userName = data['first_name'] + ' ' + data['last_name'];
+    const name = localStorage.getItem('name');
+    const email = localStorage.getItem('email');
+    if (name === null && email === null) {
+      const current = await this.fireService.getUser(userId);
+      const data = current.data();
+      if (data) {
+        localStorage.setItem('email', JSON.stringify(data['email']));
+        const name = data['first_name'] + data['last_name'];
+        localStorage.setItem('name', JSON.stringify(name));
+      } else {
+        localStorage.setItem('email', 'null');
+        localStorage.setItem('name', 'null');
+      }
     }
   }
 
@@ -46,7 +56,11 @@ export class DashboardComponent implements OnInit {
   logout() {
     this.authService
       .logout()
-      .then(() => this.router.navigate(['/']))
+      .then(() => {
+        this.router.navigate(['/'])
+        localStorage.removeItem('email');
+        localStorage.removeItem('name');
+      })
       .catch((e) => console.log(e.message));
   }
 }
