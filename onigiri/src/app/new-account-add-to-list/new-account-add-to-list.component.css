@@ -1,0 +1,49 @@
+.add-to-list-container {
+  text-align: center;
+  padding-top: 100px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.add-to-list-container > h3 {
+  margin-bottom: 20px;
+}
+
+.add-to-list-container > h4 {
+  margin-bottom: 80px;
+}
+
+.add-to-list-tools {
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin-bottom: -1.25em;
+}
+
+.media > .mat-subheading-2 {
+  margin-bottom: 0px;
+}
+
+.manga-and-anime {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.media {
+  width: 20%;
+}
+
+.media > img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.add-to-list-media-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

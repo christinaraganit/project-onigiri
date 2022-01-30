@@ -31,6 +31,7 @@ import { MediaDetailsComponent } from './media-details/media-details.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { LoggedinAuthGuard } from './loggedin-auth.guard';
 import { NotloggedinAuthGuard } from './notloggedin-auth.guard';
+import { NewAccountAddToListComponent } from './new-account-add-to-list/new-account-add-to-list.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { NotloggedinAuthGuard } from './notloggedin-auth.guard';
     SignupComponent,
     SignupFormComponent,
     MediaDetailsComponent,
-    UserListComponent
+    UserListComponent,
+    NewAccountAddToListComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -61,7 +63,8 @@ import { NotloggedinAuthGuard } from './notloggedin-auth.guard';
       { path: '', component: LandingPageComponent, canActivate: [LoggedinAuthGuard] },
       { path: 'media', component: AnimeMangaPullerComponent, canActivate: [NotloggedinAuthGuard]},
       { path: 'media/:id', component: MediaDetailsComponent, canActivate: [NotloggedinAuthGuard]},
-      { path: 'mylist', component: UserListComponent, canActivate: [NotloggedinAuthGuard] }
+      { path: 'my-list', component: UserListComponent, canActivate: [NotloggedinAuthGuard] },
+      {path: 'add-listings', component: NewAccountAddToListComponent, canActivate: [NotloggedinAuthGuard]}
       ]
     ),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
