@@ -2,7 +2,7 @@
 <div class="filter">
     <input type="text" placeholder="Search" [(ngModel)]="search" (ngModelChange)="onSearchChange()">
 </div>
-<div class="mediaList">
+<div class="mediaList" (scroll)="atBottom()">
     <div class="media" *ngFor="let e of medias" (click)="goToDetails(e.id)">
         <img src={{e.coverImage.large}}  />
         <p *ngIf ="e.title.english != null else romaji">{{e.title.english}}</p>
