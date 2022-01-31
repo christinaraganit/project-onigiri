@@ -1,31 +1,53 @@
+.headings {
+  text-align: center;
+  padding-top: 100px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.headings > h3 {
+  margin-bottom: 80px;
+}
+
+.add-to-list-tools {
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin-bottom: -1.25em;
+}
+
 .mediaList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 5%;
-    padding: 5%;
-    margin: 0 5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 5%;
 }
 
 .media {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    flex: 0 1 15%;
-    margin-bottom: 5%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 0 1 15%;
+  margin-bottom: 20px;
 }
 
 .media img {
-    height: 300px;
-    object-fit: cover;
-    width: 100%;
-    border-radius: 5px;
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 4px;
 }
 
 .filter {
-    display: flex;
-    flex-direction: row;
-} 
+  display: flex;
+  flex-direction: row;
+}

@@ -17,11 +17,13 @@ export class NewAccountAddToListComponent implements OnInit {
     private fireService: FirestoreService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const curr_user = this.authService.getUser();
     if (curr_user) {
-      this.setUserInfo(curr_user.uid);
+      await this.setUserInfo(curr_user.uid);
     }
+    this.userName = JSON.parse(localStorage.getItem('name') || 'null');
+    this.email = JSON.parse(localStorage.getItem('email') || 'null');
   }
 
   async setUserInfo(userId: string) {
