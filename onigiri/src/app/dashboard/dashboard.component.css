@@ -20,12 +20,14 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  padding-right: 20px;
   flex: 1;
 }
 
 .name-information .mat-caption,
 .name-information .mat-body-1 {
   margin: 0;
+  padding-left: 5px;
 }
 
 .dashboard-main {

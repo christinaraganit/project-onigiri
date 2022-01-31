@@ -1,31 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../authentication.service';
 import { FirestoreService } from '../firestore.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-new-account-add-to-list',
+  templateUrl: './new-account-add-to-list.component.html',
+  styleUrls: ['./new-account-add-to-list.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class NewAccountAddToListComponent implements OnInit {
 
   userName: string;
   email: string;
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
+    private authService: AuthService, 
     private fireService: FirestoreService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit(): void {
     const curr_user = this.authService.getUser();
     if (curr_user) {
-      await this.setUserInfo(curr_user.uid);
+      this.setUserInfo(curr_user.uid);
     }
-    this.userName = JSON.parse(localStorage.getItem('name') || 'null');
-    this.email = JSON.parse(localStorage.getItem('email') || 'null');
   }
 
   async setUserInfo(userId: string) {
@@ -43,24 +39,5 @@ export class DashboardComponent implements OnInit {
         localStorage.setItem('name', 'null');
       }
     }
-  }
-
-  media() {
-    this.router.navigate(['/media']);
-  }
-
-  list() {
-    this.router.navigate(['/my-list']);
-  }
-
-  logout() {
-    this.authService
-      .logout()
-      .then(() => {
-        this.router.navigate(['/'])
-        localStorage.removeItem('email');
-        localStorage.removeItem('name');
-      })
-      .catch((e) => console.log(e.message));
   }
 }
