@@ -12,6 +12,7 @@ export class Title {
 
 export class Media {
     constructor(
+        public type: string,
         public id: number,
         public title: Title,
         public coverImage: ImageSize,

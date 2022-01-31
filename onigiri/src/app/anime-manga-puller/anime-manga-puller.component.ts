@@ -48,11 +48,13 @@ export class AnimeMangaPullerComponent implements OnInit {
     .subscribe(data=> {
       this.li = data;
       this.medias = this.li.data.Page.media;
+      console.log(this.medias);
     });
 
   }
 
   onSearchChange() {
+    this.page = 1;
     var search_query = this.search !== "" ? `
     query {
       Page (page: ${this.page}) {

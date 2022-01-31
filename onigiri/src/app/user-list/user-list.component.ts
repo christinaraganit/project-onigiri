@@ -40,6 +40,7 @@ export class UserListComponent implements OnInit {
           perPage
         }
         media (id_in: [${ids}]){
+          type
           id
           title {
             english
@@ -59,7 +60,6 @@ export class UserListComponent implements OnInit {
         this.user_medias.sort((a,b) => {
           return a.date_added - b.date_added;
         })
-        console.log(this.user_medias);
       });
   }
 
