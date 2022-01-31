@@ -22,33 +22,37 @@
     <div class="manga-and-anime">
       <div class="add-to-list-media-row">
         <div class="media">
-          <img src="../../assets/img/placeholder.png" />
+          <div class="media-img">
+            <img src="../../assets/img/placeholder.png" />
+            <button mat-stroked-button [matMenuTriggerFor]="animemenu">
+              Add to favourites
+            </button>
+            <mat-menu yPosition="below" #animemenu="matMenu">
+              <button mat-menu-item>Favourites</button>
+              <button mat-menu-item>Currently watching</button>
+              <button mat-menu-item>To watch</button>
+              <button mat-menu-item>Already watched</button>
+            </mat-menu>
+          </div>
           <h3 class="mat-subheading-2">Placeholder placeholder</h3>
           <p class="mat-body-1">Anime</p>
         </div>
 
         <div class="media">
-          <img src="../../assets/img/placeholder.png" />
+          <div class="media-img">
+            <img src="../../assets/img/placeholder.png" />
+            <button mat-stroked-button [matMenuTriggerFor]="mangamenu">
+              Add to favourites
+            </button>
+            <mat-menu yPosition="below" #mangamenu="matMenu">
+              <button mat-menu-item>Favourites</button>
+              <button mat-menu-item>Currently read</button>
+              <button mat-menu-item>To read</button>
+              <button mat-menu-item>Already read</button>
+            </mat-menu>
+          </div>
           <h3 class="mat-subheading-2">Placeholder placeholder</h3>
-          <p class="mat-body-1">Anime</p>
-        </div>
-
-        <div class="media">
-          <img src="../../assets/img/placeholder.png" />
-          <h3 class="mat-subheading-2">Placeholder placeholder</h3>
-          <p class="mat-body-1">Anime</p>
-        </div>
-
-        <div class="media">
-          <img src="../../assets/img/placeholder.png" />
-          <h3 class="mat-subheading-2">Placeholder placeholder</h3>
-          <p class="mat-body-1">Anime</p>
-        </div>
-
-        <div class="media">
-          <img src="../../assets/img/placeholder.png" />
-          <h3 class="mat-subheading-2">Placeholder placeholder</h3>
-          <p class="mat-body-1">Anime</p>
+          <p class="mat-body-1">Manga</p>
         </div>
       </div>
     </div>
