@@ -1,4 +1,4 @@
-<body>
+<nav *ngIf="!(path === '/login' || path === '/signup' || path === '')">
   <mat-toolbar class="navigation" color="primary">
     <div class="logotype">
       <svg
@@ -123,4 +123,4 @@
       </div>
     </div>
   </div>
-</body>
+</nav>

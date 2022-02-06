@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../authentication.service';
 import { FirestoreService } from '../firestore.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +13,18 @@ export class DashboardComponent implements OnInit {
 
   userName: string;
   email: string;
+  path: string = '';
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private fireService: FirestoreService
-  ) { }
+    private fireService: FirestoreService,
+    private location: Location
+  ) {
+    this.router.events.subscribe((val) => {
+      this.path = this.location.path();
+    });
+  }
 
   async ngOnInit() {
     const curr_user = this.authService.getUser();
