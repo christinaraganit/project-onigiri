@@ -28,8 +28,51 @@
 
 <div class="mediaList" (scroll)="atBottom()">
   <div class="media" *ngFor="let e of medias" (click)="goToDetails(e.id)">
-    <img src="{{ e.coverImage.large }}" />
-    <p *ngIf="e.title.english != null; else romaji">{{ e.title.english }}</p>
+    <div>
+      <img src="{{ e.coverImage.large }}" />
+      <div>
+        <button
+          mat-fab
+          color="warm"
+          [matMenuTriggerFor]="mangaMenu"
+          aria-label="Add to list"
+        >
+          <mat-icon>note_add</mat-icon>
+        </button>
+        <mat-menu #mangaMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>favorite</mat-icon>
+            <span>Add to favourites</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>library_books</mat-icon>
+            <span>Already read</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>library_add</mat-icon>
+            <span>To read</span>
+          </button>
+        </mat-menu>
+        <mat-menu #animeMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>favorite</mat-icon>
+            <span>Add to favourites</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>movie_filter</mat-icon>
+            <span>Already watched</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>add_to_queue</mat-icon>
+            <span>To watch</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <h3 class="mat-subheading-2" *ngIf="e.title.english != null; else romaji">
+      {{ e.title.english }}
+    </h3>
     <ng-template #romaji>
       <p>{{ e.title.romaji }}</p>
     </ng-template>
