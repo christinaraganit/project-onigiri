@@ -11,6 +11,7 @@ import { FirestoreService } from '../firestore.service';
 export class UserListComponent implements OnInit {
 
   user_medias: any = [];
+  userName: string;
 
   constructor(
     private http: HttpClient,
@@ -21,6 +22,7 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     if (this.auth.currentUser) {
       this.getList(this.auth.currentUser.uid);
+      this.userName = JSON.parse(localStorage.getItem('name') || 'null');
     }
   }
 

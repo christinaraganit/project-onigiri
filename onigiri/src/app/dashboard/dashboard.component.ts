@@ -36,14 +36,14 @@ export class DashboardComponent implements OnInit {
   }
 
   async setUserInfo(userId: string) {
-    const name = localStorage.getItem('name');
-    const email = localStorage.getItem('email');
+    const name = JSON.parse(localStorage.getItem('name') || 'null');
+    const email = JSON.parse(localStorage.getItem('email') || 'null');
     if (name === null && email === null) {
       const current = await this.fireService.getUser(userId);
       const data = current.data();
       if (data) {
         localStorage.setItem('email', JSON.stringify(data['email']));
-        const name = data['first_name'] + data['last_name'];
+        const name = data['first_name'] + ' ' + data['last_name'];
         localStorage.setItem('name', JSON.stringify(name));
       } else {
         localStorage.setItem('email', 'null');
@@ -58,6 +58,10 @@ export class DashboardComponent implements OnInit {
 
   list() {
     this.router.navigate(['/my-list']);
+  }
+
+  dashboard() {
+    this.router.navigate(['/dashboard']);
   }
 
   logout() {
