@@ -6,67 +6,32 @@
   <button mat-flat-button color="primary">All media</button>
   <button mat-stroked-button>Anime</button>
   <button mat-stroked-button>Manga</button>
-  <mat-form-field
-    style="width: 300px !important"
-    class="search-field"
-    appearance="fill"
-  >
+  <mat-form-field style="width: 300px !important" class="search-field" appearance="fill">
     <mat-label>Search for an anime or manga</mat-label>
     <div class="filter">
-      <input
-        matInput
-        name="anime"
-        type="text"
-        placeholder="Search"
-        [(ngModel)]="search"
-        (ngModelChange)="onSearchChange()"
-        placeholder="Ex. Jujutsu Kaisen"
-      />
+      <input matInput name="anime" type="text" placeholder="Search" [(ngModel)]="search"
+        (ngModelChange)="onSearchChange()" placeholder="Ex. Jujutsu Kaisen" />
     </div>
   </mat-form-field>
 </div>
 
 <div class="mediaList" (scroll)="atBottom()">
-  <div class="media" *ngFor="let e of medias" (click)="goToDetails(e.id)">
-    <div>
+  <div class="media" *ngFor="let e of medias">
+    <div class="media-image">
       <img src="{{ e.coverImage.large }}" />
-      <div>
-        <button
-          mat-fab
-          color="warm"
-          [matMenuTriggerFor]="mangaMenu"
-          aria-label="Add to list"
-        >
-          <mat-icon>note_add</mat-icon>
+      <div class="media-overlay">
+        <button mat-button (click)="goToDetails(e.id)">
+          <mat-icon>library_books</mat-icon>
+          <span>Go to details</span>
         </button>
-        <mat-menu #mangaMenu="matMenu">
-          <button mat-menu-item>
-            <mat-icon>favorite</mat-icon>
-            <span>Add to favourites</span>
-          </button>
-          <button mat-menu-item disabled>
-            <mat-icon>library_books</mat-icon>
-            <span>Already read</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>library_add</mat-icon>
-            <span>To read</span>
-          </button>
-        </mat-menu>
-        <mat-menu #animeMenu="matMenu">
-          <button mat-menu-item>
-            <mat-icon>favorite</mat-icon>
-            <span>Add to favourites</span>
-          </button>
-          <button mat-menu-item disabled>
-            <mat-icon>movie_filter</mat-icon>
-            <span>Already watched</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>add_to_queue</mat-icon>
-            <span>To watch</span>
-          </button>
-        </mat-menu>
+        <button mat-button>
+          <mat-icon>favorite</mat-icon>
+          <span>Add to favourites</span>
+        </button>
+        <button mat-button>
+          <mat-icon>library_add</mat-icon>
+          <span>To read</span>
+        </button>
       </div>
     </div>
 

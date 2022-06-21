@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FirestoreService } from '../firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +17,8 @@ export class UserListComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private auth: Auth,
-    private fr: FirestoreService
+    private fr: FirestoreService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,10 @@ export class UserListComponent implements OnInit {
       this.getList(this.auth.currentUser.uid);
       this.userName = JSON.parse(localStorage.getItem('name') || 'null');
     }
+  }
+
+  goToDetails(id: number) {
+    this.router.navigate(['/media/' + id]);
   }
 
   async getList(userId: string) {
