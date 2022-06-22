@@ -1,0 +1,27 @@
+<div class="headings">
+    <h3 class="mat-display-2">{{ userName }}'s Favorites</h3>
+</div>
+<div class="mediaList">
+    <div class="media" *ngFor="let e of user_medias">
+        <div class="media-image">
+            <img src="{{ e.coverImage.large }}" />
+            <div class="media-overlay">
+              <button mat-button>
+                <mat-icon>library_books</mat-icon>
+                <span>Go to details</span>
+              </button>
+              <button mat-button>
+                <mat-icon>bookmark_remove</mat-icon>
+                <span>Remove from list</span>
+              </button>
+            </div>
+          </div>
+      
+          <h3 class="mat-subheading-2" *ngIf="e.title.english != null; else romaji">
+            {{ e.title.english }}
+          </h3>
+          <ng-template #romaji>
+            <p>{{ e.title.romaji }}</p>
+          </ng-template>
+    </div>
+</div>

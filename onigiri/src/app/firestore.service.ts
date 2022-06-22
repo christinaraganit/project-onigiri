@@ -85,11 +85,34 @@ export class FirestoreService {
     return;
   }
 
+  async addMediaToFavorites(
+    userId: string,
+    mediaId: string,
+  ) {
+    const date = new Date();
+    await setDoc(doc(this.db, 'users', userId, 'favorites', mediaId), {
+      mediaId,
+      date_added: date
+    });
+    return;
+  }
+
   async getUserList(
     userId: string
   ) {
     let media_ids: any = [];
     const snapshot = await getDocs(collection(this.db, 'users', userId, 'lists'));
+    snapshot.forEach(doc => {
+      media_ids.push(doc.data());
+    })
+    return media_ids;
+  }
+
+  async getUserFavorites(
+    userId: string
+  ) {
+    let media_ids: any = [];
+    const snapshot = await getDocs(collection(this.db, 'users', userId, 'favorites'));
     snapshot.forEach(doc => {
       media_ids.push(doc.data());
     })

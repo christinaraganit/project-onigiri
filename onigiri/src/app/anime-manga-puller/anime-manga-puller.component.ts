@@ -2,6 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Media } from '../media-classes/media-classes';
 import { Router } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
+import { FirestoreService } from '../firestore.service';
 
 @Component({
   selector: 'app-anime-manga-puller',
@@ -40,7 +42,12 @@ export class AnimeMangaPullerComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private auth: Auth,
+    private fr: FirestoreService
+  ) { }
 
   ngOnInit(): void {
     const headers = new HttpHeaders({'Content-Type':'application/json', Accept:'application/json'});
@@ -173,4 +180,10 @@ export class AnimeMangaPullerComponent implements OnInit {
     });
   }
 
+  addToFavorites(id: number) {
+    if (this.auth.currentUser && id) {
+      const mediaId = id.toString()
+      this.fr.addMediaToFavorites(this.auth.currentUser.uid, mediaId);
+    }
+  }
 }

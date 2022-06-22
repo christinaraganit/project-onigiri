@@ -33,7 +33,7 @@
           <mat-icon>library_books</mat-icon>
           <span>Manage your lists</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="favorites()">
           <mat-icon>favorite</mat-icon>
           <span>View your favourites</span>
         </button>
@@ -75,7 +75,7 @@
         <span>Lists</span>
       </button>
       <mat-divider></mat-divider>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="favorites()">
         <mat-icon>favorite</mat-icon>
         <span>Favourites</span>
       </button>

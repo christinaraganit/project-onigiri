@@ -64,6 +64,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
+  favorites() {
+    this.router.navigate(['/favorites']);
+  }
+
   logout() {
     this.authService
       .logout()
