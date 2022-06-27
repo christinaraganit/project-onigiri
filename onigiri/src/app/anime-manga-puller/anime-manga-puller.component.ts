@@ -8,7 +8,7 @@ import { FirestoreService } from '../firestore.service';
 @Component({
   selector: 'app-anime-manga-puller',
   templateUrl: './anime-manga-puller.component.html',
-  styleUrls: ['./anime-manga-puller.component.css']
+  styleUrls: ['./anime-manga-puller.component.css'],
 })
 export class AnimeMangaPullerComponent implements OnInit {
 
@@ -16,6 +16,7 @@ export class AnimeMangaPullerComponent implements OnInit {
   search: string = "";
   li:any;
   medias: Media[] = [];
+  user_favorites: any = [];
   all_list_query = `
   query {
     Page (page: ${this.page}) {
@@ -50,13 +51,18 @@ export class AnimeMangaPullerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    if (this.auth.currentUser) {
+      this.fr.getUserFavorites(this.auth.currentUser.uid).then((val) => {
+        this.user_favorites = val;
+      })
+    }
     const headers = new HttpHeaders({'Content-Type':'application/json', Accept:'application/json'});
     this.http.post<any>('https://graphql.anilist.co/', JSON.stringify({query: this.all_list_query}), {headers})
     .subscribe(data=> {
       this.li = data;
       this.medias = this.li.data.Page.media;
     });
-
   }
 
   onSearchChange() {
@@ -180,10 +186,11 @@ export class AnimeMangaPullerComponent implements OnInit {
     });
   }
 
-  addToFavorites(id: number) {
+  async addToFavorites(id: number) {
     if (this.auth.currentUser && id) {
       const mediaId = id.toString()
-      this.fr.addMediaToFavorites(this.auth.currentUser.uid, mediaId);
+      await this.fr.addMediaToFavorites(this.auth.currentUser.uid, mediaId);
+      this.user_favorites = await this.fr.getUserFavorites(this.auth.currentUser.uid);
     }
   }
 }

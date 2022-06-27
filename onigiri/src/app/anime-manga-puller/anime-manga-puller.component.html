@@ -24,10 +24,16 @@
           <mat-icon>library_books</mat-icon>
           <span>Go to details</span>
         </button>
-        <button mat-button (click)="addToFavorites(e.id)">
+        <button mat-button *ngIf="user_favorites | inUserFavorites: e.id; else remove" disabled>
           <mat-icon>favorite</mat-icon>
-          <span>Add to favourites</span>
+          <span>Already in favorites</span>
         </button>
+        <ng-template #remove>
+          <button mat-button (click)="addToFavorites(e.id)">
+            <mat-icon>favorite</mat-icon>
+            <span>Add to favourites</span>
+          </button>
+        </ng-template>
         <button mat-button>
           <mat-icon>library_add</mat-icon>
           <span>To read</span>

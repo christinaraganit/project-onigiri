@@ -33,6 +33,7 @@ import { LoggedinAuthGuard } from './loggedin-auth.guard';
 import { NotloggedinAuthGuard } from './notloggedin-auth.guard';
 import { NewAccountAddToListComponent } from './new-account-add-to-list/new-account-add-to-list.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { InUserFavoritesPipe } from './in-user-favorites.pipe';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
     MediaDetailsComponent,
     UserListComponent,
     NewAccountAddToListComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    InUserFavoritesPipe
   ],
   imports: [
     ReactiveFormsModule,
@@ -59,16 +61,53 @@ import { FavoritesComponent } from './favorites/favorites.component';
     MaterialModule,
     HttpClientModule,
     RouterModule.forRoot(
-      [{ path: 'dashboard', component: DashboardComponent, canActivate: [NotloggedinAuthGuard] },
-      { path: 'login', component: LoginComponent, canActivate: [LoggedinAuthGuard] },
-      { path: 'signup', component: SignupComponent, canActivate: [LoggedinAuthGuard] },
-      { path: '', component: LandingPageComponent, canActivate: [LoggedinAuthGuard] },
-      { path: 'media', component: AnimeMangaPullerComponent, canActivate: [NotloggedinAuthGuard]},
-      { path: 'media/:id', component: MediaDetailsComponent, canActivate: [NotloggedinAuthGuard]},
-      { path: 'my-list', component: UserListComponent, canActivate: [NotloggedinAuthGuard] },
-      { path: 'add-listings', component: NewAccountAddToListComponent, canActivate: [NotloggedinAuthGuard]},
-      { path: 'favorites', component: FavoritesComponent, canActivate: [NotloggedinAuthGuard]}
-      ]
+      [
+        { 
+          path: 'dashboard', 
+          component: DashboardComponent, 
+          canActivate: [NotloggedinAuthGuard],
+        },
+        { 
+          path: 'login', 
+          component: LoginComponent, 
+          canActivate: [LoggedinAuthGuard] 
+        },
+        { 
+          path: 'signup', 
+          component: SignupComponent, 
+          canActivate: [LoggedinAuthGuard] 
+        },
+        { 
+          path: '', 
+          component: LandingPageComponent, 
+          canActivate: [LoggedinAuthGuard]
+        },
+        { 
+          path: 'media', 
+          component: AnimeMangaPullerComponent, 
+          canActivate: [NotloggedinAuthGuard]
+        },
+        { 
+          path: 'media/:id', 
+          component: MediaDetailsComponent, 
+          canActivate: [NotloggedinAuthGuard]
+        },
+        { 
+          path: 'my-list', 
+          component: UserListComponent, 
+          canActivate: [NotloggedinAuthGuard] 
+        },
+        { 
+          path: 'add-listings', 
+          component: NewAccountAddToListComponent, 
+          canActivate: [NotloggedinAuthGuard]
+        },
+        { 
+          path: 'favorites', 
+          component: FavoritesComponent, 
+          canActivate: [NotloggedinAuthGuard]
+        }
+      ],
     ),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
