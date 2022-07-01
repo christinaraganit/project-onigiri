@@ -1,0 +1,51 @@
+<div class="headings">
+  <h3 class="mat-display-2">Anime and manga</h3>
+</div>
+
+<div class="add-to-list-tools">
+  <button mat-flat-button color="primary">All media</button>
+  <button mat-stroked-button>Anime</button>
+  <button mat-stroked-button>Manga</button>
+  <mat-form-field style="width: 300px !important" class="search-field" appearance="fill">
+    <mat-label>Search for an anime or manga</mat-label>
+    <div class="filter">
+      <input matInput name="anime" type="text" placeholder="Search" [(ngModel)]="search"
+        (ngModelChange)="onSearchChange()" placeholder="Ex. Jujutsu Kaisen" />
+    </div>
+  </mat-form-field>
+</div>
+
+<div class="mediaList" (scroll)="atBottom()">
+  <div class="media" *ngFor="let e of medias">
+    <div class="media-image">
+      <img src="{{ e.coverImage.large }}" />
+      <div class="media-overlay">
+        <button mat-button (click)="goToDetails(e.id)">
+          <mat-icon>library_books</mat-icon>
+          <span>Go to details</span>
+        </button>
+        <button mat-button *ngIf="user_favorites | inUserFavorites: e.id; else remove" disabled>
+          <mat-icon>favorite</mat-icon>
+          <span>Already in favorites</span>
+        </button>
+        <ng-template #remove>
+          <button mat-button (click)="addToFavorites(e.id)">
+            <mat-icon>favorite</mat-icon>
+            <span>Add to favourites</span>
+          </button>
+        </ng-template>
+        <button mat-button>
+          <mat-icon>library_add</mat-icon>
+          <span>To read</span>
+        </button>
+      </div>
+    </div>
+
+    <h3 class="mat-subheading-2" *ngIf="e.title.english != null; else romaji">
+      {{ e.title.english }}
+    </h3>
+    <ng-template #romaji>
+      <p>{{ e.title.romaji }}</p>
+    </ng-template>
+  </div>
+</div>

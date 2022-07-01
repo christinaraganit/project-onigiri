@@ -1,4 +1,4 @@
-<body>
+<nav *ngIf="!(path === '/login' || path === '/signup' || path === '')">
   <mat-toolbar class="navigation" color="primary">
     <div class="logotype">
       <svg
@@ -29,11 +29,11 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="list()">
           <mat-icon>library_books</mat-icon>
           <span>Manage your lists</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="favorites()">
           <mat-icon>favorite</mat-icon>
           <span>View your favourites</span>
         </button>
@@ -45,32 +45,37 @@
           <mat-icon>account_circle</mat-icon>
           <span>View profile</span>
         </button>
-        <button mat-menu-item>
+        <button (click)="logout()" mat-menu-item>
           <mat-icon>exit_to_app</mat-icon>
           <span>Sign out</span>
         </button>
       </mat-menu>
 
       <div class="name-information">
-        <p class="mat-body-1">Your name</p>
-        <p class="mat-caption">Your username</p>
+        <p class="mat-body-1">{{ userName }}</p>
+        <p class="mat-caption">{{ email }}</p>
       </div>
     </div>
   </mat-toolbar>
 
   <div class="dashboard-main">
     <div class="sidenav">
-      <button class="current" mat-menu-item>
+      <button class="current" mat-menu-item (click)="dashboard()">
         <mat-icon>home</mat-icon>
         <span>Dashboard</span>
       </button>
       <mat-divider></mat-divider>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="media()">
+        <mat-icon>play_arrow</mat-icon>
+        <span>Media</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="list()">
         <mat-icon>library_books</mat-icon>
         <span>Lists</span>
       </button>
       <mat-divider></mat-divider>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="favorites()">
         <mat-icon>favorite</mat-icon>
         <span>Favourites</span>
       </button>
@@ -118,4 +123,4 @@
       </div>
     </div>
   </div>
-</body>
+</nav>

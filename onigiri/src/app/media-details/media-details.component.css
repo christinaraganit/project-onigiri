@@ -1,0 +1,36 @@
+.banner {
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.main-details {
+    display: flex;
+    flex-direction: row;
+    padding: 0 15%;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-to-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -125px;
+    gap: 10px;
+}
+
+.add-to-list img {
+    border-radius: 5px;
+}
+
+.add-to-list button {
+    max-width: fit-content;
+}
+
+.media-text {
+    margin-top: 10px;
+}

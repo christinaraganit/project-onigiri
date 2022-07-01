@@ -1,0 +1,81 @@
+<mat-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="formGroup">
+      <form [formGroup]="formGroup">
+        <ng-template matStepLabel
+          >Email and <br />
+          password</ng-template
+        >
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required />
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            required
+          />
+        </mat-form-field>
+    
+        <div class="buttons-container">
+          <button mat-stroked-button color="primary" matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step [stepControl]="formGroup">
+      <form [formGroup]="formGroup">
+        <ng-template matStepLabel>Name</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName" required />
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" required />
+        </mat-form-field>
+        <div class="buttons-container">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-stroked-button color="primary" matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step [stepControl]="formGroup" optional>
+      <form [formGroup]="formGroup">
+        <ng-template matStepLabel>Favourites</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Favourite anime</mat-label>
+          <mat-select formControlName="anime"> 
+            <mat-option *ngFor="let anime of animes" [value]="anime.viewValue">
+              {{ anime.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Favourite manga</mat-label>
+          <mat-select formControlName="manga">
+            <mat-option *ngFor="let manga of mangas" [value]="manga.viewValue">
+              {{ manga.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    
+        <div class="buttons-container">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext (click)="onSubmit()">
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
